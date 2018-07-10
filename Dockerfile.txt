@@ -28,8 +28,8 @@ RUN /opt/Anaconda/bin/conda update conda -y && \
 	/opt/Anaconda/bin/conda update --all -y
 	
 # Install Anaconda Environment with Data Science Packages
-RUN wget <link to anaconda.txt> && \
-	/opt/Anaconda/bin/conda install --file anaconda.txt && \
+COPY cfg/anaconda.txt ./
+RUN /opt/Anaconda/bin/conda install --file anaconda.txt && \
 	/opt/Anaconda/bin/conda clean --all -y && \
 	rm anaconda.txt
 	
