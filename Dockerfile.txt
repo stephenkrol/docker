@@ -1,11 +1,10 @@
-# Jupyter Notebook with kernels Python2/3, SciJava, Java, and R via Anaconda3-5.2.0
-# Includes many common Python and R data science libraries
-# Adapted from https://github.com/andreivmaksimov/python_data_science/blob/master/Dockerfile
-# Note: Requires internet access to build. See Dockerfile.restricted for local creation
-# VERSION	0.1
-
 FROM ubuntu:latest
-MAINTAINER "stephenkrol"
+LABEL maintainer="stephenkrol"
+LABEL version=".1"
+LABEL description="Jupyter Notebook with kernels Python2/3, SciJava, Java, and R via \ 
+	Anaconda3-5.2.0. Includes many common Python and R data science libraries. Adapted from \ https://github.com/andreivmaksimov/python_data_science/blob/master/Dockerfile. Note: Requires \
+	internet access to build. Try Dockerfile.restricted for local creation."
+	
 
 # Update Packages
 RUN apt-get update && \
