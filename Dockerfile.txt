@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 LABEL maintainer="stephenkrol"
-LABEL version=".1"
+LABEL version=".2"
 LABEL description="Jupyter Notebook with kernels Python2/3, SciJava, Java, and R via \ 
 	Anaconda3-5.2.0. Includes many common Python and R data science libraries. Adapted from \ https://github.com/andreivmaksimov/python_data_science/blob/master/Dockerfile. Note: Requires \
 	internet access to build. Try Dockerfile.restricted for local creation."
@@ -26,10 +26,9 @@ RUN	wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh && \
 RUN /opt/Anaconda/bin/conda update conda -y && \
 	/opt/Anaconda/bin/conda update --all -y
 	
-# Install Anaconda Environment (named "ds") with Data Science Packages
+# Install Anaconda Environment with Data Science Packages
 RUN wget <link to anaconda.txt> && \
-	/opt/Anaconda/bin/conda create --name ds --file anaconda.txt && \
-	source activate ds && \ # Might not need this
+	/opt/Anaconda/bin/conda install --file anaconda.txt && \
 	/opt/Anaconda/bin/conda clean --all -y && \
 	rm anaconda.txt
 	
