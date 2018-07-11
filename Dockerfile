@@ -10,14 +10,12 @@ LABEL description="Jupyter Notebook with kernels Python2/3, SciJava, Java, and R
 # Update Packages
 RUN apt-get update && \
 	apt-get upgrade -y && \
-	#apt-get install -y build-essential git python3-dev wget openssl && \
-	apt-get install -y bzip2 && \
+	apt-get install -y openssl && \
 	rm -rf /var/lib/apt/lists/*
 	
 # Install Anaconda3 to /opt
-RUN mkdir /opt
 WORKDIR /opt
-ADD https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
+ADD https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh /opt
 RUN	chmod +x Anaconda3-5.2.0-Linux-x86_64.sh && \
 	bash Anaconda3-5.2.0-Linux-x86_64.sh -b -p /opt/Anaconda && \
 	export PATH="/opt/anaconda/bin:$PATH" && \
