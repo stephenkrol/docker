@@ -28,7 +28,9 @@ RUN /opt/Anaconda/bin/conda update conda -y && \
 COPY cfg/anaconda.txt ./
 RUN /opt/Anaconda/bin/conda install --file anaconda.txt && \
 	/opt/Anaconda/bin/conda clean --all -y && \
-	rm anaconda.txt
+	rm anaconda.txt && \
+	/opt/Anaconda/bin/conda remove nb_conda_kernels -y # This breaks kernels per env but removes
+													   # duplicate kernels in that sense.
 	
 # Add Python2 kernel
 RUN python2 -m pip --upgrade pip && \
