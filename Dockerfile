@@ -40,7 +40,8 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mykey.key -out m
 COPY cfg/jupyter_notebook_config.py ./
 
 # Add Tini
-# Tini operates as a process subreaper for jupyter. This prevents kernel crashes.
+# Tini operates as a process subreaper for Jupyter. This prevents kernel crashes.
+# Taken from Jupyter 5.5.0 documentation
 ENV TINI_VERSION v0.6.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
 RUN chmod +x /usr/bin/tini
