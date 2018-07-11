@@ -6,14 +6,17 @@ c.IPKernelApp.pylab = 'inline'  # in-line figure when using Matplotlib
 c.NotebookApp.ip = '*'  
 c.NotebookApp.open_browser = False  # do not open a browser window by default when using notebooks
 c.NotebookApp.notebook_dir = '/opt/Anaconda/notebooks'
-c.NotebookApp.allow_root = True # Allow to run Jupyter from root user inside Docker container
+c.NotebookApp.allow_root = false
 c.NotebookApp.allow_origin = '*' # Allow any IP as origin
-c.NotebookApp.certfile = u'/root/.jupyter/mycert.pem' # SSL/TLS certificate
-c.NotebookApp.keyfile = u'/root/.jupyter/mykey.key'
+c.NotebookApp.certfile = u'/home/ubuntu/.jupyter/mycert.pem' # SSL/TLS certificate
+c.NotebookApp.keyfile = u'/home/ubuntu/.jupyter/mykey.key'
 
 # Additional Common Options:
 
 # Add a password if desired
+# Get the hash by running ipython: 
+#	from IPython.lib import passwd
+#	passwd()
 #c.NotebookApp.password = u'sha1:<hash>'
 
 # Change port if desired
