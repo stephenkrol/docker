@@ -33,7 +33,7 @@ RUN /opt/Anaconda/bin/conda install --file anaconda.txt && \
 													   # duplicate kernels in that sense.
 	
 # Add Python2 kernel
-RUN python2 -m pip --upgrade pip && \
+RUN python2 -m pip install --upgrade pip && \
 	python2 -m pip install ipykernel && \
 	python2 -m ipykernel install --user 
 	
