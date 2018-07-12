@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 LABEL maintainer="stephenkrol"
-LABEL version=".5"
+LABEL version=".1"
 LABEL description="Jupyter Notebook with kernels: Clojure, Groovy, Java, Kotlin, Python 2/3, R, SQL, Scala, and SciJava. Includes many common Python and R data science libraries. Adapted from https://github.com/andreivmaksimov/python_data_science/blob/master/Dockerfile. Note: Requires internet access to build."
 
 # Update packages
@@ -9,7 +9,7 @@ RUN apt-get update && \
 	apt-get install -y openssl openjdk-8-jre python2.7-minimal python-pip unzip && \
 	rm -rf /var/lib/apt/lists/*
 	
-# Install Anaconda3 to /opt/Anaconda
+# Install Anaconda3 to /opt
 WORKDIR /opt
 ADD https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh /opt
 RUN	chmod +x Anaconda3-5.2.0-Linux-x86_64.sh && \
@@ -28,7 +28,7 @@ RUN /opt/Anaconda/bin/conda install --file anaconda.txt && \
 	rm anaconda.txt && \
 	/opt/Anaconda/bin/conda remove _nb_ext_conf -y # This breaks kernels per env but removes duplicate kernels in that sense.
 	
-# Add Python2 kernel
+# Python2 kernel setup
 RUN python2 -m pip install --upgrade pip && \
 	python2 -m pip install ipykernel && \
 	python2 -m ipykernel install --user 
@@ -42,6 +42,18 @@ RUN mkdir /opt/h2o && \
 	rm -rf /opt/h2o-3.20.0.3/ && \
 	rm -rf /opt/h2o/python/
 	
+# Sparkmagic kernel setup
+RUN /opt/Anaconda/bin/jupyter nbextension enable --py --sys-prefix widgetsnbextension
+# The following are commands to provide wrapper kernels. Uncomment if necessary
+# RUN /opt/Anaconda/bin/jupyter-kernelspec install /opt/Anaconda/pkgs/sparkmagic-0.12.1-py36_0/lib/python3.6/site-packages/sparkmagic/kernels/sparkrkernel && \
+#	/opt/Anaconda/bin/jupyter-kernelspec install /opt/Anaconda/pkgs/sparkmagic-0.12.1-py36_0/lib/python3.6/site-packages/sparkmagic/kernels/sparkrkernel && \
+#	/opt/Anaconda/bin/jupyter-kernelspec install /opt/Anaconda/pkgs/sparkmagic-0.12.1-py36_0/lib/python3.6/site-packages/sparkmagic/kernels/sparkrkernel && \
+# 	/opt/Anaconda/bin/jupyter-kernelspec install /opt/Anaconda/pkgs/sparkmagic-0.12.1-py36_0/lib/python3.6/site-packages/sparkmagic/kernels/sparkrkernel
+# The following is a config file with a bunch of options. Uncomment to grab the example from GitHub
+# ADD https://raw.githubusercontent.com/jupyter-incubator/sparkmagic/master/sparkmagic/example_config.json /home/ubuntu/.sparkmagic/config.json 
+# Uncomment to enable server extension so that clusters can be changed
+# RUN /opt/Anaconda/bin/jupyter serverextension enable --py sparkmagic
+
 # Set up Jupyter 
 # Notes: Notebooks saved with Anaconda
 #		 SSL key good for one year
