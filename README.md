@@ -1,5 +1,3 @@
-# docker
-
 ## Description
 This builds a Docker image off of Ubuntu:latest that sets up a Jupyter Notebook that includes:
   * Anaconda3 with a bunch of extra R and Python packages for data science
