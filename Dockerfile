@@ -57,7 +57,7 @@ RUN /opt/Anaconda/bin/jupyter nbextension enable beakerx --py --sys-prefix && \
 # Add Tini
 # Tini operates as a process subreaper for Jupyter. This prevents kernel crashes.
 # Taken from Jupyter 5.5.0 documentation
-ENV TINI_VERSION v0.6.0
+ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
 RUN chmod +x /usr/bin/tini
 ENTRYPOINT ["/usr/bin/tini", "--"]
