@@ -26,7 +26,7 @@ COPY cfg/anaconda.txt ./
 RUN /opt/Anaconda/bin/conda install --file anaconda.txt && \
 	/opt/Anaconda/bin/conda clean --all -y && \
 	rm anaconda.txt && \
-	/opt/Anaconda/bin/jupyter nbextension disable _nb_ext_conf -y # This breaks kernels per env but removes duplicate kernels in that sense.
+	/opt/Anaconda/bin/jupyter nbextension disable _nb_ext_conf # This breaks kernels per env but removes duplicate kernels in that sense.
 	
 # Add Python2 kernel
 RUN python2 -m pip install --upgrade pip && \
