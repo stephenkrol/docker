@@ -26,7 +26,7 @@ COPY cfg/anaconda.txt ./
 RUN /opt/Anaconda/bin/conda install --file anaconda.txt && \
 	/opt/Anaconda/bin/conda clean --all -y && \
 	rm anaconda.txt && \
-	/opt/Anaconda/bin/conda remove _nb_ext_conf -y # This breaks kernels per env but removes duplicate kernels in that sense.
+	/opt/Anaconda/bin/jupyter nbextension disable _nb_ext_conf -y # This breaks kernels per env but removes duplicate kernels in that sense.
 	
 # Add Python2 kernel
 RUN python2 -m pip install --upgrade pip && \
@@ -49,7 +49,10 @@ RUN mkdir /root/.jupyter
 WORKDIR /root/.jupyter
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mykey.key -out mycert.pem -batch
 COPY cfg/jupyter_notebook_config.py ./
-RUN jupyter nbextension enable beakerx --py --sys-prefix
+RUN /opt/Anaconda/bin/jupyter nbextension enable beakerx --py --sys-prefix && \
+	/opt/Anaconda/bin/jupyter nbextension enable jupyter_dashboards --py --sys-prefix && \
+	/opt/Anaconda/bin/jupyter nbextensions_configurator enable --user
+
 
 # Add Tini
 # Tini operates as a process subreaper for Jupyter. This prevents kernel crashes.
