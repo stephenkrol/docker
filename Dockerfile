@@ -57,7 +57,6 @@ RUN /opt/Anaconda/bin/jupyter nbextension enable --py --sys-prefix widgetsnbexte
 # Set up Jupyter 
 # Notes: Notebooks saved with Anaconda
 #		 SSL key good for one year
-RUN mkdir /root/.jupyter
 WORKDIR /root/.jupyter
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mykey.key -out mycert.pem -batch
 COPY cfg/jupyter_notebook_config.py ./
