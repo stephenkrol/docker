@@ -74,7 +74,6 @@ RUN $CONDA_BIN/jupyter nbextension enable --py --sys-prefix widgetsnbextension
 
 # Set up Jupyter 
 # Note: SSL key good for one year
-RUN mkdir $JUPYTER_CFG_DIR
 WORKDIR $JUPYTER_CFG_DIR
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mykey.key -out mycert.pem -batch
 COPY cfg/jupyter_notebook_config.py ./
