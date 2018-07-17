@@ -8,7 +8,7 @@ LABEL description="Jupyter Notebook with kernels: Clojure, Groovy, Java, Kotlin,
 # You may also want to change the SSL certificate options in the "Set up Jupyter" section.
 # Directories
 ENV CONDA_DIR /opt/conda
-ENV CONDA_BIN $CONDA_DIR/bin
+ENV CONDA_BIN ${CONDA_DIR}/bin
 ENV H2O_DIR /opt/h2o
 ENV JUPYTER_CFG_DIR /root/.jupyter
 ENV NOTEBOOKS_DIR $CONDA_DIR/notebooks
