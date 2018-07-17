@@ -35,7 +35,7 @@ RUN apt-get update && \
 
 # Install $CONDA to $CONDA_DIR
 WORKDIR /opt
-ADD ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh
+ADD ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh /opt
 RUN	chmod +x ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
 	bash ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
 	rm ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh
