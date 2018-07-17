@@ -476,6 +476,7 @@ https://conda.anaconda.org/r/linux-64/r-forcats-0.2.0-mro343h889e2dd_0.tar.bz2
 https://conda.anaconda.org/r/linux-64/r-ggplot2-2.2.1-mro343h889e2dd_0.tar.bz2
 https://conda.anaconda.org/r/linux-64/r-htmltable-1.11.1-mro343h889e2dd_0.tar.bz2
 https://conda.anaconda.org/r/linux-64/r-multcomp-1.4_8-mro343h889e2dd_0.tar.bz2
+https://conda.anaconda.org/r/linux-64/r-nycflights13-0.2.2-mro343h889e2dd_0.tar.bz2
 https://repo.anaconda.com/pkgs/r/linux-64/r-prodlim-1.6.1-mro343h599a50d_0.tar.bz2
 https://conda.anaconda.org/r/linux-64/r-purrr-0.2.4-mro343h086d26f_0.tar.bz2
 https://repo.anaconda.com/pkgs/r/linux-64/r-quantmod-0.4_12-mro343h889e2dd_0.tar.bz2
