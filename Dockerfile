@@ -35,10 +35,10 @@ RUN apt-get update && \
 
 # Install $CONDA to $CONDA_DIR
 WORKDIR /opt
-ADD ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-`uname`-`uname -m`.sh
-RUN	chmod +x ${CONDA}-${CONDA_VERSION}-`uname`-`uname -m`.sh && \
-	bash ${CONDA}-${CONDA_VERSION}-`uname`-`uname -m`.sh -b -p $CONDA_DIR && \
-	rm ${CONDA}-${CONDA_VERSION}-`uname`-`uname -m`.sh
+ADD ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh
+RUN	chmod +x ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
+	bash ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
+	rm ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh
 
 # Update Anaconda
 RUN ${CONDA_BIN}/conda update conda -y && \
