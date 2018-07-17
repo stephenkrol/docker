@@ -8,6 +8,7 @@ https://repo.anaconda.com/pkgs/main/linux-64/blas-1.0-mkl.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2018.4.16-0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/conda-env-2.6.0-h36134e3_1.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/intel-openmp-2018.0.3-0.tar.bz2
+https://conda.anaconda.org/conda-forge/linux-64/jansson-2.11-0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/libgcc-ng-7.2.0-hdf63c60_3.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/libgfortran-ng-7.2.0-hdf63c60_3.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/libstdcxx-ng-7.2.0-hdf63c60_3.tar.bz2
@@ -49,6 +50,7 @@ https://repo.anaconda.com/pkgs/main/linux-64/unixodbc-2.3.6-h1bed415_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/xz-5.2.4-h14c3975_4.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/yaml-0.1.7-had09818_2.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/zlib-1.2.11-ha838bed_2.tar.bz2
+https://conda.anaconda.org/conda-forge/linux-64/avro-1.8.2-h8f0a498_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/blosc-1.14.3-hdbcaa40_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/gcc_linux-64-7.2.0-h550dcbe_27.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/gfortran_impl_linux-64-7.2.0-hdf63c60_3.tar.bz2
@@ -258,6 +260,7 @@ https://repo.anaconda.com/pkgs/main/linux-64/libgdal-2.2.4-h6f639c0_1.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/navigator-updater-0.2.1-py36_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/nose-1.3.7-py36hcdf7029_2.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/pango-1.41.0-hd475d92_0.tar.bz2
+https://conda.anaconda.org/conda-forge/linux-64/protobuf-3.5.2-py36_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/pygments-2.2.0-py36h0d3125c_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/pytest-3.6.2-py36_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/traittypes-0.2.1-py_1.tar.bz2
@@ -280,6 +283,7 @@ https://repo.anaconda.com/pkgs/main/linux-64/flask-cors-3.0.6-py36_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/ipython-6.4.0-py36_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/keyring-13.0.0-py36_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/nbconvert-5.3.1-py36hb41ffb7_0.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/pbr-4.1.0-py_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/prometheus_client-0.2.0-py36_0.tar.bz2
 https://conda.anaconda.org/r/linux-64/r-assertthat-0.2.0-mro343h889e2dd_0.tar.bz2
 https://conda.anaconda.org/r/linux-64/r-backports-1.1.2-mro343h086d26f_0.tar.bz2
@@ -350,6 +354,7 @@ https://conda.anaconda.org/r/linux-64/r-yaml-2.1.16-mro343h086d26f_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/service_identity-17.0.0-py36h28b3542_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/urllib3-1.23-py36_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/ipykernel-4.8.2-py36_0.tar.bz2
+https://conda.anaconda.org/conda-forge/linux-64/mock-2.0.0-py36_0.tar.bz2
 https://conda.anaconda.org/r/linux-64/r-bindrcpp-0.2-mro343h599a50d_0.tar.bz2
 https://conda.anaconda.org/r/linux-64/r-bit64-0.9_7-mro343h086d26f_0.tar.bz2
 https://conda.anaconda.org/r/linux-64/r-class-7.3_14-mro343_0.tar.bz2
@@ -483,6 +488,7 @@ https://repo.anaconda.com/pkgs/main/linux-64/pytest-doctestplus-0.1.3-py36_0.tar
 https://repo.anaconda.com/pkgs/main/linux-64/pywavelets-0.5.2-py36he602eb0_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/scipy-1.1.0-py36hfc37229_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/shapely-1.6.4-py36h7ef4460_0.tar.bz2
+https://conda.anaconda.org/conda-forge/linux-64/tensorflow-1.1.0-py36_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/altair-2.1.0-py_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/beakerx-1.0.0-py36_1.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/bkcharts-0.2-py36h735825a_0.tar.bz2
@@ -509,3 +515,7 @@ https://repo.anaconda.com/pkgs/main/linux-64/statsmodels-0.9.0-py36h3010b51_0.ta
 https://conda.anaconda.org/conda-forge/linux-64/xarray-0.10.7-py36_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/blaze-0.11.3-py36h4e06776_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/seaborn-0.8.1-py36hfad7ec4_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/linux-64/keras-2.2.0-0.tar.bz2
+https://repo.anaconda.com/pkgs/main/linux-64/keras-applications-1.0.2-py36_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/linux-64/keras-preprocessing-1.0.1-py36_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/linux-64/keras-base-2.2.0-py36_0.tar.bz2
