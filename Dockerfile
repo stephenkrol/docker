@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 LABEL maintainer="stephenkrol"
-LABEL version=".7"
+LABEL version=".3"
 LABEL description="Jupyter Notebook with kernels: Clojure, Groovy, Java, Kotlin, Python 2/3, R, SQL, Scala, and SciJava. Includes many common Python and R data science libraries. Adapted from https://github.com/andreivmaksimov/python_data_science/blob/master/Dockerfile. Note: Requires internet access to build."
 
 # Environment variables:
@@ -51,7 +51,7 @@ RUN ${CONDA_BIN}/conda install --file anaconda.txt && \
 	rm anaconda.txt && \
 	${CONDA_BIN}/jupyter nbextension disable _nb_ext_conf
 
-# Add Python2 kernel (via system, not conda, to prevent package duplication)
+# Python2 kernel setup
 RUN python2 -m pip install --upgrade pip && \
 	python2 -m pip install ipykernel && \
 	python2 -m ipykernel install --user 
@@ -65,6 +65,13 @@ RUN mkdir $H2O_DIR && \
 	rm -rf ${H2O_DIR}-${H2O_VERSION}/ && \
 	rm -rf ${H2O_DIR}/python/
 
+# Sparkmagic kernel setup
+RUN $CONDA_BIN/jupyter nbextension enable --py --sys-prefix widgetsnbextension
+# The following is a config file with a bunch of options. Uncomment and change directory to grab the example from GitHub
+# ADD https://raw.githubusercontent.com/jupyter-incubator/sparkmagic/master/sparkmagic/example_config.json /home/ubuntu/.sparkmagic/config.json 
+# Uncomment to enable server extension so that clusters can be changed
+# RUN ${CONDA_BIN}/jupyter serverextension enable --py sparkmagic
+
 # Set up Jupyter 
 # Note: SSL key good for one year
 WORKDIR $JUPYTER_CFG_DIR
@@ -77,6 +84,7 @@ RUN ${CONDA_BIN}/jupyter nbextension enable beakerx --py --sys-prefix && \
 # Add Tini
 # Tini operates as a process subreaper for Jupyter. This prevents kernel crashes.
 # Taken from Jupyter 5.5.0 documentation
+ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
 RUN chmod +x /usr/bin/tini
 ENTRYPOINT ["/usr/bin/tini", "--"]

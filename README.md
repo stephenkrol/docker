@@ -4,6 +4,7 @@ This builds a Docker image off of Ubuntu:latest that sets up a Jupyter Notebook 
     * See */cfg/anaconda.txt* for the full list!
   * Beakerx (https://github.com/twosigma/beakerx) which gives kernels for Clojure, Java, Scala, Sql, Kotlin, and Groovy
   * SciJava (https://github.com/scijava/scijava-jupyter-kernel) providing Clojure, Groovy, ImageJ, Python, JavaScript, and R within the same notebook
+  * Sparkmagic (https://github.com/jupyter-incubator/sparkmagic) providing Spark-connected (through livy) kernels in Python, Python3, R, and Scala. 
 
 -----
 
