@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 LABEL maintainer="stephenkrol"
-LABEL version=".2"
+LABEL version=".3"
 LABEL description="Jupyter Notebook with kernels: Clojure, Groovy, Java, Kotlin, Python 2/3, R, SQL, Scala, and SciJava. Includes many common Python and R data science libraries. Adapted from https://github.com/andreivmaksimov/python_data_science/blob/master/Dockerfile. Note: Requires internet access to build."
 
 # Environment variables:
