@@ -49,9 +49,9 @@ RUN apt-get update && \
 	${CONDA_BIN}/conda update --all -y && \
 	
 	# Install Anaconda environment with data science packages
-	${CONDA_BIN}/conda install --file anaconda.txt && \
+	${CONDA_BIN}/conda install --file ${INSTALL_BASE}/anaconda.txt && \
 	${CONDA_BIN}/conda clean --all -y && \
-	rm anaconda.txt && \
+	rm ${INSTALL_BASE}/anaconda.txt && \
 	${CONDA_BIN}/jupyter nbextension disable _nb_ext_conf && \
 	
 	# Python2 kernel setup
