@@ -31,7 +31,8 @@ ENV CONDA_URL https://repo.anaconda.com/archive
 # Move over required files
 COPY cfg/anaconda.txt $INSTALL_BASE
 COPY cfg/jupyter_notebook_config.py $JUPYTER_CFG_DIR
-
+ADD ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh
+ADD http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip
 
 # Update packages
 RUN apt-get update && \
@@ -40,7 +41,6 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/* && \
 	
 	# Install $CONDA to $CONDA_DIR
-	wget ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
 	bash ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
 	rm ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
 	
@@ -61,7 +61,6 @@ RUN apt-get update && \
 	
 	# Add newer H2O to $H2O_DIR
 	# Note: Add the r package manually via Jupyter if desired
-	wget http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip && \
 	mkdir $H2O_DIR && \
 	unzip ${INSTALL_BASE}/h2o-${H2O_VERSION}.zip && \
 	mv ${INSTALL_BASE}/h2o-${H2O_VERSION}/* $H2O_DIR && \
