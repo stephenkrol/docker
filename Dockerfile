@@ -40,7 +40,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/* && \
 	
 	# Install $CONDA to $CONDA_DIR
-	wget ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh $INSTALL_BASE
+	wget ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh $INSTALL_BASE && \
 	chmod +x ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
 	bash ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
 	rm ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh
