@@ -40,8 +40,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/* && \
 	
 	# Install $CONDA to $CONDA_DIR
-	echo "wget ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh $INSTALL_BASE" && \
-	wget -O ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh $INSTALL_BASE && \
+	wget -P $INSTALL_BASE ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
 	bash ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
 	rm ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
 	
@@ -62,7 +61,7 @@ RUN apt-get update && \
 	
 	# Add newer H2O to $H2O_DIR
 	# Note: Add the r package manually via Jupyter if desired
-	wget http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip $INSTALL_BASE && \
+	wget -P $INSTALL_BASE http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip && \
 	mkdir $H2O_DIR && \
 	unzip ${INSTALL_BASE}/h2o-${H2O_VERSION}.zip && \
 	mv ${INSTALL_BASE}/h2o-${H2O_VERSION}/* $H2O_DIR && \
