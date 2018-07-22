@@ -41,8 +41,8 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/* && \
 	
 	# Install $CONDA to $CONDA_DIR
-	bash ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
-	rm ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
+	bash ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
+	rm ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
 	
 	# Update Anaconda
 	${CONDA_BIN}/conda update conda -y && \
