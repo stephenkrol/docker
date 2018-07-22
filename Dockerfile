@@ -76,6 +76,7 @@ RUN apt-get update && \
 
 	# Set up Jupyter 
 	# Note: SSL key good for one year
+	mkdir $JUPYTER_CFG_DIR && \
 	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ${JUPYTER_CFG_DIR}/mykey.key -out ${JUPYTER_CFG_DIR}/mycert.pem -batch && \
 	${CONDA_BIN}/jupyter nbextension enable beakerx --py --sys-prefix && \
 	${CONDA_BIN}/jupyter nbextension enable jupyter_dashboards --py --sys-prefix && \
