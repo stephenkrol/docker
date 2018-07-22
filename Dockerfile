@@ -31,8 +31,8 @@ ENV CONDA_URL https://repo.anaconda.com/archive
 # Move over required files
 COPY cfg/anaconda.txt $INSTALL_BASE
 COPY cfg/jupyter_notebook_config.py $JUPYTER_CFG_DIR
-ADD ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh
-ADD http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip
+ADD ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh $INSTALL_BASE
+ADD http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip $INSTALL_BASE
 
 # Update packages
 RUN apt-get update && \
