@@ -68,7 +68,7 @@ RUN apt-get update && \
 	# Note: Add the r package manually via Jupyter if desired
 	mkdir $H2O_DIR && \
 	unzip ${INSTALL_BASE}/h2o-${H2O_VERSION}.zip && \
-	mv ${INSTALL_BASE}/h2o-${H2O_VERSION}/* $H2O_DIR && \
+	mv ${INSTALL_BASE}/h2o-${H2O_VERSION}/ $H2O_DIR && \
 	rm -rf ${INSTALL_BASE}/h2o-${H2O_VERSION}/ && \
 	rm -rf ${H2O_DIR}/python/ && \
 	
