@@ -14,7 +14,7 @@ ENV H2O_DIR ${INSTALL_BASE}/h2o
 ENV JUPYTER_CFG_DIR /root/.jupyter
 ENV NOTEBOOKS_DIR ${CONDA_DIR}/notebooks
 # Apt packages
-ENV APT_PKGS "openssl openjdk-8-jre python2.7-minimal python-pip unzip"
+ENV APT_PKGS "openssl openjdk-8-jre python2.7-minimal python-pip unzip curl"
 # Additional options
 ENV JUPYTER_PORT 8888
 # Software
