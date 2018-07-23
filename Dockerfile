@@ -40,6 +40,7 @@ RUN apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y $APT_PKGS && \
 	rm -rf /var/lib/apt/lists/* && \
+	apt-get clean && \
 	
 	# Install $CONDA to $CONDA_DIR
 	bash ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
