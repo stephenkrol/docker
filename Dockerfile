@@ -44,14 +44,14 @@ RUN apt-get update && \
 	
 	# Move over required files
 	mkdir -p ${JUPYTER_CFG_DIR}/nbconfig && \
-	curl https://raw.githubusercontent.com/stephenkrol/docker/master/cfg/anaconda.txt  > /tmp/anaconda.txt && \
+	curl https://raw.githubusercontent.com/stephenkrol/docker/master/cfg/anaconda.txt  > ${INSTALL_BASE}/anaconda.txt && \
 	curl https://raw.githubusercontent.com/stephenkrol/docker/master/cfg/jupyter_notebook_config.py > ${JUPYTER_CFG_DIR}/jupyter_notebook_config.py && \
-	curl ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh > /tmp/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
-	curl http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip > /tmp/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
+	curl ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh > ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
+	curl http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip > ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
 	
 	
 	# Install $CONDA to $CONDA_DIR
-	/tmp/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
+	${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
 	
 	# Update Anaconda
 	${CONDA_BIN}/conda update conda -y && \
@@ -70,7 +70,7 @@ RUN apt-get update && \
 	# Add newer H2O to $H2O_DIR
 	# Note: Add the r package manually via Jupyter if desired
 	mkdir $H2O_DIR && \
-	unzip /tmp/h2o-${H2O_VERSION}.zip && \
+	unzip ${INSTALL_BASE}/h2o-${H2O_VERSION}.zip && \
 	mv ${INSTALL_BASE}/h2o-${H2O_VERSION}/ $H2O_DIR && \
 	rm -rf ${H2O_DIR}/python/ && \
 	
