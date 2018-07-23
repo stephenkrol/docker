@@ -40,6 +40,10 @@ RUN apt-get update && \
 	apt-get install -y $APT_PKGS && \
 	rm -rf /var/lib/apt/lists/* && \
 	
+	# Make directories
+	mkdir $JUPYTER_CFG_DIR && \
+	mkdir ${JUPYTER_CFG_DIR}/nbconfig && \
+	
 	# Install $CONDA to $CONDA_DIR
 	bash ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
 	rm ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
@@ -76,8 +80,8 @@ RUN apt-get update && \
 
 	# Set up Jupyter 
 	# Note: SSL key good for one year
-	mkdir $JUPYTER_CFG_DIR && \
-	mkdir ${JUPYTER_CFG_DIR}/nbconfig && \
+	# mkdir $JUPYTER_CFG_DIR && \
+	# mkdir ${JUPYTER_CFG_DIR}/nbconfig && \
 	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ${JUPYTER_CFG_DIR}/mykey.key -out ${JUPYTER_CFG_DIR}/mycert.pem -batch && \
 	${CONDA_BIN}/jupyter nbextension enable beakerx --py --sys-prefix && \
 	${CONDA_BIN}/jupyter nbextension enable jupyter_dashboards --py --sys-prefix && \
