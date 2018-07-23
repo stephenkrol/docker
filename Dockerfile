@@ -31,7 +31,8 @@ ENV CONDA_URL https://repo.anaconda.com/archive
 RUN apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y $APT_PKGS && \
-	rm -rf /var/lib/apt/lists/*
+	rm -rf /var/lib/apt/lists/* && \
+	apt-get clean
 
 # Install $CONDA to $CONDA_DIR
 WORKDIR /opt
