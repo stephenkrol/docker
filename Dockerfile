@@ -41,8 +41,8 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/* && \
 	
 	# Make directories
-	# mkdir $JUPYTER_CFG_DIR && \
-	mkdir ${JUPYTER_CFG_DIR}/nbconfig && \
+	mkdir -p $JUPYTER_CFG_DIR && \
+	mkdir -p ${JUPYTER_CFG_DIR}/nbconfig && \
 	
 	# Install $CONDA to $CONDA_DIR
 	bash ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
