@@ -14,7 +14,7 @@ ENV H2O_DIR ${INSTALL_BASE}/h2o
 ENV JUPYTER_CFG_DIR /root/.jupyter
 ENV NOTEBOOKS_DIR ${CONDA_DIR}/notebooks
 # Apt packages
-ENV APT_PKGS "openssl openjdk-8-jre python2.7-minimal python-pip unzip curl"
+ENV APT_PKGS "openssl openjdk-8-jre python2.7-minimal python-pip unzip"
 # Additional options
 ENV JUPYTER_PORT 8888
 # Software
@@ -29,11 +29,11 @@ ENV CONDA_URL https://repo.anaconda.com/archive
 #ENV CONDA_URL https://repo.continuum.io/miniconda
 
 # Move over required files
-# RUN mkdir -p ${JUPYTER_CFG_DIR}/nbconfig
-# COPY cfg/anaconda.txt ${INSTALL_BASE}/
-# COPY cfg/jupyter_notebook_config.py ${JUPYTER_CFG_DIR}/
-# ADD ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh ${INSTALL_BASE}/
-# ADD http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip ${INSTALL_BASE}/
+RUN mkdir -p ${JUPYTER_CFG_DIR}/nbconfig
+COPY cfg/anaconda.txt ${INSTALL_BASE}/
+COPY cfg/jupyter_notebook_config.py ${JUPYTER_CFG_DIR}/
+ADD ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh ${INSTALL_BASE}/
+ADD http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip ${INSTALL_BASE}/
 
 # Update packages
 RUN apt-get update && \
@@ -42,16 +42,9 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/* && \
 	apt-get clean && \
 	
-	# Move over required files
-	mkdir -p ${JUPYTER_CFG_DIR}/nbconfig && \
-	curl https://raw.githubusercontent.com/stephenkrol/docker/master/cfg/anaconda.txt  > ${INSTALL_BASE}/anaconda.txt && \
-	curl https://raw.githubusercontent.com/stephenkrol/docker/master/cfg/jupyter_notebook_config.py > ${JUPYTER_CFG_DIR}/jupyter_notebook_config.py && \
-	curl ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh > ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
-	curl http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip > ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
-	
-	
 	# Install $CONDA to $CONDA_DIR
-	/bin/bash ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
+	bash ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
+	rm ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
 	
 	# Update Anaconda
 	${CONDA_BIN}/conda update conda -y && \
@@ -60,6 +53,7 @@ RUN apt-get update && \
 	# Install Anaconda environment with data science packages
 	${CONDA_BIN}/conda install --file ${INSTALL_BASE}/anaconda.txt && \
 	${CONDA_BIN}/conda clean --all -y && \
+	rm ${INSTALL_BASE}/anaconda.txt && \
 	${CONDA_BIN}/jupyter nbextension disable _nb_ext_conf && \
 	
 	# Python2 kernel setup
@@ -71,8 +65,9 @@ RUN apt-get update && \
 	# Note: Add the r package manually via Jupyter if desired
 	mkdir $H2O_DIR && \
 	unzip ${INSTALL_BASE}/h2o-${H2O_VERSION}.zip && \
-	mv ${INSTALL_BASE}/h2o-${H2O_VERSION}/ $H2O_DIR && \
-	rm -rf ${H2O_DIR}/python/ && \
+	# mv ${INSTALL_BASE}/h2o-${H2O_VERSION}/ $H2O_DIR && \
+	# rm -rf ${INSTALL_BASE}/h2o-${H2O_VERSION}/ && \
+	# rm -rf ${H2O_DIR}/python/ && \
 	
 	# Sparkmagic kernel setup
 	$CONDA_BIN/jupyter nbextension enable --py --sys-prefix widgetsnbextension && \
@@ -88,10 +83,7 @@ RUN apt-get update && \
 	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ${JUPYTER_CFG_DIR}/mykey.key -out ${JUPYTER_CFG_DIR}/mycert.pem -batch && \
 	${CONDA_BIN}/jupyter nbextension enable beakerx --py --sys-prefix && \
 	${CONDA_BIN}/jupyter nbextension enable jupyter_dashboards --py --sys-prefix && \
-	${CONDA_BIN}/jupyter nbextensions_configurator enable --user && \
-	
-	# Delete the remaining temp files
-	rm -rf /tmp/*
+	${CONDA_BIN}/jupyter nbextensions_configurator enable --user
 
 # Add Tini
 # Tini operates as a process subreaper for Jupyter. This prevents kernel crashes.
