@@ -34,6 +34,8 @@ COPY cfg/jupyter_notebook_config.py $JUPYTER_CFG_DIR
 ADD ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh $INSTALL_BASE
 ADD http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip $INSTALL_BASE
 
+RUN mkdir -p ${JUPYTER_CFG_DIR}/nbconfig
+
 # Update packages
 RUN apt-get update && \
 	apt-get upgrade -y && \
@@ -41,8 +43,8 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/* && \
 	
 	# Make directories
-	mkdir -p $JUPYTER_CFG_DIR && \
-	mkdir -p ${JUPYTER_CFG_DIR}/nbconfig && \
+	# mkdir -p $JUPYTER_CFG_DIR && \
+	# mkdir -p ${JUPYTER_CFG_DIR}/nbconfig && \
 	
 	# Install $CONDA to $CONDA_DIR
 	bash ${INSTALL_BASE}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
