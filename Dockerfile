@@ -44,10 +44,10 @@ RUN apt-get update && \
 	
 	# Move over required files
 	mkdir -p ${JUPYTER_CFG_DIR}/nbconfig && \
-	wget -P /tmp https://raw.githubusercontent.com/stephenkrol/docker/master/cfg/anaconda.txt && \
-	wget -P /tmp https://raw.githubusercontent.com/stephenkrol/docker/master/cfg/jupyter_notebook_config.py && \
-	wget -P /tmp ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
-	wget -P /tmp http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip && \
+	curl https://raw.githubusercontent.com/stephenkrol/docker/master/cfg/anaconda.txt  > /tmp/anaconda.txt && \
+	curl https://raw.githubusercontent.com/stephenkrol/docker/master/cfg/jupyter_notebook_config.py > ${JUPYTER_CFG_DIR}/jupyter_notebook_config.py && \
+	curl ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh > /tmp/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
+	curl http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip > /tmp/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
 	
 	
 	# Install $CONDA to $CONDA_DIR
