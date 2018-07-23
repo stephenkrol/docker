@@ -7,25 +7,25 @@ LABEL description="Jupyter Notebook with kernels: Clojure, Groovy, Java, Kotlin,
 # This section is mostly set up for making easy changes as desired. Don't change CONDA_BIN.
 # You may also want to change the SSL certificate options in the "Set up Jupyter" section.
 # Directories
-ENV INSTALL_BASE /opt
-ENV CONDA_DIR ${INSTALL_BASE}/conda
-ENV CONDA_BIN ${CONDA_DIR}/bin
-ENV H2O_DIR ${INSTALL_BASE}/h2o
-ENV JUPYTER_CFG_DIR /root/.jupyter
-ENV NOTEBOOKS_DIR ${CONDA_DIR}/notebooks
-# Apt packages
-ENV APT_PKGS "openssl openjdk-8-jre python2.7-minimal python-pip unzip"
-# Additional options
-ENV JUPYTER_PORT 8888
-# Software
-ENV TINI_VERSION v0.18.0
-ENV H2O_VERSION 3.20.0.3
-ENV CONDA Anaconda3
-ENV CONDA_VERSION 5.2.0
-ENV CONDA_URL https://repo.anaconda.com/archive
+ENV INSTALL_BASE /opt \
+	CONDA_DIR ${INSTALL_BASE}/conda \
+	CONDA_BIN ${CONDA_DIR}/bin \
+	H2O_DIR ${INSTALL_BASE}/h2o \
+	JUPYTER_CFG_DIR /root/.jupyter \
+	NOTEBOOKS_DIR ${CONDA_DIR}/notebooks \
+	# Apt packages
+	APT_PKGS "openssl openjdk-8-jre python2.7-minimal python-pip unzip" \
+	# Additional options
+	JUPYTER_PORT 8888 \
+	# Software
+	TINI_VERSION v0.18.0 \
+	H2O_VERSION 3.20.0.3 \
+	CONDA Anaconda3 \
+	CONDA_VERSION 5.2.0 \
+	CONDA_URL https://repo.anaconda.com/archive
 # For Miniconda, uncomment these lines and delete the three lines above
-#ENV CONDA Miniconda3
-#ENV CONDA_VERSION latest
+#ENV CONDA Miniconda3 \
+#ENV CONDA_VERSION latest \
 #ENV CONDA_URL https://repo.continuum.io/miniconda
 
 # Move over required files
