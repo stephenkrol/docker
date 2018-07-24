@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:latest as builder
 LABEL maintainer="stephenkrol"
 LABEL version=".3"
 LABEL description="Jupyter Notebook with kernels: Clojure, Groovy, Java, Kotlin, Python 2/3, R, SQL, Scala, and SciJava. Includes many common Python and R data science libraries. Adapted from https://github.com/andreivmaksimov/python_data_science/blob/master/Dockerfile. Note: Requires internet access to build."
@@ -80,6 +80,10 @@ COPY cfg/jupyter_notebook_config.py ./
 RUN ${CONDA_BIN}/jupyter nbextension enable beakerx --py --sys-prefix && \
 	${CONDA_BIN}/jupyter nbextension enable jupyter_dashboards --py --sys-prefix && \
 	${CONDA_BIN}/jupyter nbextensions_configurator enable --user
+
+# Multistage build compression fix
+FROM ubuntu:latest
+COPY --from=builder / /
 
 # Add Tini
 # Tini operates as a process subreaper for Jupyter. This prevents kernel crashes.
