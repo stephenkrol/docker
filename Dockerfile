@@ -1,6 +1,6 @@
 FROM ubuntu:latest as builder
 LABEL maintainer="stephenkrol"
-LABEL version=".3"
+LABEL version=".5"
 LABEL description="Jupyter Notebook with kernels: Clojure, Groovy, Java, Kotlin, Python 2/3, R, SQL, Scala, and SciJava. Includes many common Python and R data science libraries. Adapted from https://github.com/andreivmaksimov/python_data_science/blob/master/Dockerfile. Note: Requires internet access to build."
 
 # Environment variables:
@@ -83,7 +83,21 @@ RUN ${CONDA_BIN}/jupyter nbextension enable beakerx --py --sys-prefix && \
 
 # Multistage build compression fix
 FROM ubuntu:latest
-COPY --from=builder / /
+COPY --from=builder /opt /opt
+COPY --from=builder $JUPYTER_CFG_DIR $JUPYTER_CFG_DIR
+COPY --from=builder $H2O_DIR $H2O_DIR
+
+# Re-add Packages
+# Update packages
+RUN apt-get update && \
+	apt-get upgrade -y && \
+	apt-get install -y $APT_PKGS && \
+	rm -rf /var/lib/apt/lists/* && \
+	apt-get clean && \
+	# Python2 kernel
+	python2 -m pip install --upgrade pip && \
+	python2 -m pip install ipykernel && \
+	python2 -m ipykernel install --user 
 
 # Add Tini
 # Tini operates as a process subreaper for Jupyter. This prevents kernel crashes.
