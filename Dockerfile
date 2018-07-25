@@ -36,14 +36,16 @@ RUN apt-get update && \
 
 # Install $CONDA to $CONDA_DIR
 WORKDIR /opt
-ADD ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh /opt
-RUN	chmod +x ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
+RUN	wget ${CONDA_URL}/${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh
+	chmod +x ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
 	bash ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh -b -p $CONDA_DIR && \
-	rm ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh
+	rm ${CONDA}-${CONDA_VERSION}-Linux-x86_64.sh && \
+	${CONDA_BIN}/conda clean --all -y	
 
 # Update Anaconda
 RUN ${CONDA_BIN}/conda update conda -y && \
-	${CONDA_BIN}/conda update --all -y
+	${CONDA_BIN}/conda update --all -y && \
+	${CONDA_BIN}/conda clean --all -y	
 
 # Install Anaconda environment with data science packages
 COPY cfg/anaconda.txt ./
@@ -59,8 +61,8 @@ RUN python2 -m pip install --upgrade pip && \
 
 # Add newer H2O to $H2O_DIR
 # Note: Add the r package manually via Jupyter if desired
-ADD http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip /opt
-RUN mkdir $H2O_DIR && \
+RUN wget /opt http://h2o-release.s3.amazonaws.com/h2o/rel-wright/3/h2o-$H2O_VERSION.zip
+	mkdir $H2O_DIR && \
 	unzip h2o-${H2O_VERSION}.zip && \
 	mv ${H2O_DIR}-${H2O_VERSION}/* $H2O_DIR && \
 	rm -rf ${H2O_DIR}-${H2O_VERSION}/ && \
