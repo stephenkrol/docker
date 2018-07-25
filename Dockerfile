@@ -7,9 +7,10 @@ LABEL description="Jupyter Notebook with kernels: Clojure, Groovy, Java, Kotlin,
 # This section is mostly set up for making easy changes as desired. Don't change CONDA_BIN.
 # You may also want to change the SSL certificate options in the "Set up Jupyter" section.
 # Directories
-ENV CONDA_DIR /opt/conda
+ENV INSTALL_BASE /opt
+ENV CONDA_DIR ${INSTALL_BASE}/conda
 ENV CONDA_BIN ${CONDA_DIR}/bin
-ENV H2O_DIR /opt/h2o
+ENV H2O_DIR ${INSTALL_BASE}/h2o
 ENV JUPYTER_CFG_DIR /root/.jupyter
 ENV NOTEBOOKS_DIR ${CONDA_DIR}/notebooks
 # Apt packages
@@ -83,9 +84,8 @@ RUN ${CONDA_BIN}/jupyter nbextension enable beakerx --py --sys-prefix && \
 
 # Multistage build compression fix
 FROM ubuntu:latest
-COPY --from=builder /opt /opt
+COPY --from=builder $INSTALL_BASE $INSTALL_BASE
 COPY --from=builder $JUPYTER_CFG_DIR $JUPYTER_CFG_DIR
-COPY --from=builder $H2O_DIR $H2O_DIR
 
 # Re-add Packages
 # Update packages
