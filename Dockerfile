@@ -1,4 +1,4 @@
-FROM ubuntu:latest as builder
+FROM ubuntu:bionic as builder
 LABEL maintainer="stephenkrol"
 LABEL version=".5"
 LABEL description="Jupyter Notebook with kernels: Clojure, Groovy, Java, Kotlin, Python 2/3, R, SQL, Scala, and SciJava. Includes many common Python and R data science libraries. Adapted from https://github.com/andreivmaksimov/python_data_science/blob/master/Dockerfile. Note: Requires internet access to build."
@@ -83,7 +83,7 @@ RUN ${CONDA_BIN}/jupyter nbextension enable beakerx --py --sys-prefix && \
 	${CONDA_BIN}/jupyter nbextensions_configurator enable --user
 
 # Multistage build compression fix
-FROM ubuntu:latest
+FROM ubuntu:bionic
 COPY --from=builder $INSTALL_BASE $INSTALL_BASE
 COPY --from=builder $JUPYTER_CFG_DIR $JUPYTER_CFG_DIR
 
